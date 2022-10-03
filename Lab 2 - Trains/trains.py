@@ -14,3 +14,19 @@ doc = parseString(page.content)
 
 with open("trainxml.xml", "w") as xmlfp:
     doc.writexml(xmlfp)
+
+  
+objTrainPositionsNodes = doc.getElementsByTagName("objTrainPositions")
+
+for objTrainPositionsNode in objTrainPositionsNodes:
+    trainCodeNode = objTrainPositionsNode.getElementsByTagName("TrainCode").item(0)
+    trainCode = trainCodeNode.firstChild.nodeValue.strip()
+
+    trainLatNode = objTrainPositionsNode.getElementsByTagName("TrainLatitude").item(0)
+    trainLat = trainLatNode.firstChild.nodeValue.strip()
+
+    trainLongNode = objTrainPositionsNode.getElementsByTagName("TrainLongitude").item(0)
+    trainLong = trainLongNode.firstChild.nodeValue.strip()    
+
+    print("Traincode: {}, Latitude: {}, Longitude: {}".format(trainCode, trainLat, trainLong))
+    
