@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library>
     <catalog type="Technical">
+        <book isbn-13="978-1593279929" isbn-10="1593279929">
+            <title>Automate the Boring Stuff with Python</title>
+            <author>Al Sweigart</author>
+        </book>
+        <book isbn-13="978-0596004200" isbn-10="0596004206">
+            <title>Learning XML</title>
+            <author>Erik T. Ray</author>
+        </book>        
     </catalog>
     <catalog type="Cookery">
+        <book isbn-13="978-1607748380" isbn-10="160774838X">
+            <title>The Elements of Pizza: Unlocking the Secrets to World-Class Pies at Home</title>
+            <author>Ken Forkish</author>
+        </book>   
+        <book isbn-13="978-1646430031" isbn-10="1646430034">
+            <title>Pizza: The Ultimate Cookbook </title>
+            <author>Barbara Caracciolo </author>
+        </book>               
     </catalog>    
 </library>
