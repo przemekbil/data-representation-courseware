@@ -1,82 +1,13 @@
-P250
-D251
-D286
-P285
-A613
-A442
-E836
-E936
-A512
-A610
-E248
-P322
-P620
-A868
-A218
-A221
-A406
-A714
-A806
-D252
-A310
-A219
-A220
-A408
-A312
-A222
-D211
-A510
-A712
-D930
-A710
-E122
-E835
-E935
-E244
-E834
-D927
-E245
-A708
-D413
-D414
-D212
-P215
-A715
-P415
-A410
-E123
-E934
-D415
-D819
-E833
-P414
-D313
-E246
-D926
-P753
-E933
-D925
-P321
-E247
-P754
-A912
-D818
-A911
-E124
-E832
-D312
-D817
-P619
-A910
-D816
-A132
-A908
-A913
-A130
-A131
-E121
-E242
-E243
-D924
-E932
-D815
+N	51.8491	-8.29956	P251	06 Oct 2022	P251\nCobh to Cork\nExpected Departure 18:00	To Cork
+N	51.9018	-8.4582	D253	06 Oct 2022	D253\nCork to Cobh\nExpected Departure 18:00	To Cobh
+N	51.9018	-8.4582	D286	06 Oct 2022	D286\nCork to Midleton\nExpected Departure 17:45	To Midleton
+N	51.9018	-8.4582	P249	06 Oct 2022	P249\nCork to Mallow\nExpected Departure 17:55	To Mallow
+N	51.9212	-8.17579	P285	06 Oct 2022	P285\nMidleton to Cork\nExpected Departure 17:45	To Cork
+N	53.3464	-6.29461	A224	06 Oct 2022	A224\nDublin Heuston to Cork\nExpected Departure 18:00	To Cork
+R	0	0	A218	06 Oct 2022	A218\n15:00 - Dublin Heuston to Cork (7 mins late)\nDeparted Killarney Junction next stop Cork	To Cork
+R	0	0	A220	06 Oct 2022	A220\n16:00 - Dublin Heuston to Cork (1 mins late)\nDeparted LJ896 next stop Mallow	To Cork
+R	0	0	A222	06 Oct 2022	A222\n17:00 - Dublin Heuston to Cork (-3 mins late)\nDeparted PL102 next stop Limerick Junction	To Cork
+R	0	0	D252	06 Oct 2022	D252\n17:25 - Mallow to Cork (2 mins late)\nDeparted Killarney Junction next stop Cork	To Cork
+R	52.1396	-8.65521	A225	06 Oct 2022	A225\n17:25 - Cork to Dublin Heuston (0 mins late)\nDeparted Mallow next stop Limerick Junction	To Dublin Heuston
+R	52.5009	-8.20003	A219	06 Oct 2022	A219\n14:25 - Cork to Dublin Heuston (104 mins late)\nDeparted Limerick Junction next stop Thurles	To Dublin Heuston
+R	53.0371	-7.30086	A221	06 Oct 2022	A221\n15:25 - Cork to Dublin Heuston (26 mins late)\nDeparted Portlaoise next stop Dublin Heuston	To Dublin Heuston

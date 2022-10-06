@@ -30,18 +30,14 @@ with open('train.csv', mode ='w', newline='') as train_file:
     objTrainPositionsNodes = doc.getElementsByTagName("objTrainPositions")
 
     for objTrainPositionsNode in objTrainPositionsNodes:
-        trainCodeNode = objTrainPositionsNode.getElementsByTagName("TrainCode").item(0)
-        trainCode = trainCodeNode.firstChild.nodeValue.strip()
-
-        trainLatNode = objTrainPositionsNode.getElementsByTagName("TrainLatitude").item(0)
-        trainLat = trainLatNode.firstChild.nodeValue.strip()
-
-        trainLongNode = objTrainPositionsNode.getElementsByTagName("TrainLongitude").item(0)
-        trainLong = trainLongNode.firstChild.nodeValue.strip()
 
         dataList = []
-        dataList.append(trainCode)
-        train_writer.writerow(dataList)
 
-        #print("Traincode: {}, Latitude: {}, Longitude: {}".format(trainCode, trainLat, trainLong))
-    
+        # Show only Trains goinf to or from Cork
+        if "Cork" in objTrainPositionsNode.getElementsByTagName("PublicMessage").item(0).firstChild.nodeValue.strip():
+
+            for retrieveTag in retrieveTags:
+                datanode = objTrainPositionsNode.getElementsByTagName(retrieveTag).item(0)            
+                dataList.append(datanode.firstChild.nodeValue.strip())
+
+            train_writer.writerow(dataList)
