@@ -62,20 +62,101 @@ original_files = getFilesContent(base_repo_url)
 
 ammended_files = swapNameInFiles(original_files, "Andrew", "Przemek")
 
-for file in ammended_files:
-    print(file["content"])
+#for file in ammended_files:
+#    print(file["content"])
 
 
-commit_url = base_repo_url + "/git/commits"
+#https://stackoverflow.com/questions/11801983/how-to-create-a-commit-and-push-into-repo-with-github-api-v3
+# GET /repos/:owner/:repo/branches/:branch_name
 
-commit={
-    'message':'Test commit'
+# Get the latest commit SHA of the main branch
+response = requests.get("{}/branches/main".format(base_repo_url), auth=('token', apiKey))
+
+last_commit_sha = response.json()['commit']['sha']
+
+print(last_commit_sha)
+
+
+# cerate a vontent of the file
+content={
+ "content": ammended_files[-1]['content'],
+ "encoding": "utf-8"
 }
+# POST /repos/:owner/:repo/git/blobs
+response = requests.post("{}/git/blobs".format(base_repo_url), json=content, auth=('token', apiKey))
 
-commit_response = requests.post(commit_url, commit)
+utf8_blob_sha = response.json()['sha']
 
-print(commit_response)
+print(utf8_blob_sha)
+
+
+# Create a tree which defines the folder structure
+# POST repos/:owner/:repo/git/trees/
+content = {
+   "base_tree": last_commit_sha,
+   "tree": [
+     {
+       "path": ammended_files[-1]['name'],
+       "mode": "100644",
+       "type": "blob",
+       "sha": utf8_blob_sha
+     }
+   ]
+ }
+response = requests.post("{}/git/trees".format(base_repo_url), json=content, auth=('token', apiKey))
+
+
+tree_sha = response.json()['sha']
+
+print("Tree SHA: {}".format(tree_sha))
+
+
+# Create the commit
+# POST /repos/:owner/:repo/git/commits
+
+
+content = {
+    "message": "Author name corrected",
+    "author": {
+        "name": "Przemyslaw Bil",
+        "email": "g00398317@atu.ie"
+        },
+    "parents": [
+        last_commit_sha
+        ],
+    "tree": tree_sha
+ }
+
+commit_response = requests.post("{}/git/commits".format(base_repo_url), json=content, auth=('token', apiKey))
+
+new_commit_sha = commit_response.json()['sha']
+
+print("New commit SHA: {}".format(new_commit_sha))
+
+
+
+# Update the reference of your branch to point to the new commit SHA
+# POST /repos/:owner/:repo/git/refs/heads/master
+content = {
+     "ref": "refs/heads/main",
+     "sha": new_commit_sha
+ }
+
+response = requests.post("{}/git/refs/heads/main".format(base_repo_url), json=content, auth=('token', apiKey))
+
+
+print("Final update: {}".format(response))
+
+#commit_url = base_repo_url + "/git/commits"
+
+#commit={
+#    'message':'Test commit'
+#}
+
+#commit_response = requests.post(commit_url, commit)
+
+#print(commit_response)
 
 # write to file
-with open("github.json", "w") as outfile:
-    json.dump(content, outfile, indent=4)
+#with open("github.json", "w") as outfile:
+#    json.dump(content, outfile, indent=4)
