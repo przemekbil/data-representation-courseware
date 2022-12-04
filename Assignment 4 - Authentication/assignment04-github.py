@@ -5,14 +5,6 @@ import requests
 import json
 from config import config
 
-# import GitHub api key form the config file
-apiKey = config["myKey"]
-
-owner = "przemekbil"
-repository = "private_rep"
-
-base_repo_url =  "https://api.github.com/repos/{}/{}".format(owner, repository)
-
 
 def getFilesContent(baseUrl):
 
@@ -47,105 +39,124 @@ def swapNameInFiles(filesIn, nameIn, nameOut):
     files_out=[]
 
     for file in filesIn:
+
         file_out={
             "name": file["name"],
             "url": file["url"],
             "content": file["content"].replace(nameIn, nameOut)
         }              
 
-    files_out.append(file_out)
+        files_out.append(file_out)
     
     return files_out
 
+def uploadchangesAndCommit(file, org_name, new_name):
 
-original_files = getFilesContent(base_repo_url)
+    #https://stackoverflow.com/questions/11801983/how-to-create-a-commit-and-push-into-repo-with-github-api-v3
+    # GET /repos/:owner/:repo/branches/:branch_name
 
-ammended_files = swapNameInFiles(original_files, "Andrew", "Przemek")
+    # Get the latest commit SHA of the main branch
+    response = requests.get("{}/branches/main".format(base_repo_url), auth=('token', apiKey))
 
-#for file in ammended_files:
-#    print(file["content"])
+    last_commit_sha = response.json()['commit']['sha']
 
-
-#https://stackoverflow.com/questions/11801983/how-to-create-a-commit-and-push-into-repo-with-github-api-v3
-# GET /repos/:owner/:repo/branches/:branch_name
-
-# Get the latest commit SHA of the main branch
-response = requests.get("{}/branches/main".format(base_repo_url), auth=('token', apiKey))
-
-last_commit_sha = response.json()['commit']['sha']
-
-print(last_commit_sha)
+    #print(last_commit_sha)
 
 
-# cerate a vontent of the file
-content={
- "content": ammended_files[-1]['content'],
- "encoding": "utf-8"
-}
-# POST /repos/:owner/:repo/git/blobs
-response = requests.post("{}/git/blobs".format(base_repo_url), json=content, auth=('token', apiKey))
+    # cerate a vontent of the file
+    content={
+    "content": file['content'],
+    "encoding": "utf-8"
+    }
+    # POST /repos/:owner/:repo/git/blobs
+    response = requests.post("{}/git/blobs".format(base_repo_url), json=content, auth=('token', apiKey))
 
-utf8_blob_sha = response.json()['sha']
+    utf8_blob_sha = response.json()['sha']
 
-print(utf8_blob_sha)
-
-
-# Create a tree which defines the folder structure
-# POST repos/:owner/:repo/git/trees/
-content = {
-   "base_tree": last_commit_sha,
-   "tree": [
-     {
-       "path": ammended_files[-1]['name'],
-       "mode": "100644",
-       "type": "blob",
-       "sha": utf8_blob_sha
-     }
-   ]
- }
-response = requests.post("{}/git/trees".format(base_repo_url), json=content, auth=('token', apiKey))
+    #print(utf8_blob_sha)
 
 
-tree_sha = response.json()['sha']
+    # Create a tree which defines the folder structure
+    # POST repos/:owner/:repo/git/trees/
+    content = {
+    "base_tree": last_commit_sha,
+    "tree": [
+        {
+        "path": file['name'],
+        "mode": "100644",
+        "type": "blob",
+        "sha": utf8_blob_sha
+        }
+    ]
+    }
+    response = requests.post("{}/git/trees".format(base_repo_url), json=content, auth=('token', apiKey))
 
-print("Tree SHA: {}".format(tree_sha))
+
+    tree_sha = response.json()['sha']
+
+    #print("Tree SHA: {}".format(tree_sha))
 
 
-# Create the commit
-# POST /repos/:owner/:repo/git/commits
+    # Create the commit
+    # POST /repos/:owner/:repo/git/commits
 
 
-content = {
-    "message": "Author name corrected",
-    "author": {
-        "name": "Przemyslaw Bil",
-        "email": "g00398317@atu.ie"
-        },
-    "parents": [
-        last_commit_sha
-        ],
-    "tree": tree_sha
- }
+    content = {
+        "message": "Author name changed from {} to {} in file {}".format(org_name, new_name, file['name']),
+        "author": {
+            "name": "Przemyslaw Bil",
+            "email": "g00398317@atu.ie"
+            },
+        "parents": [
+            last_commit_sha
+            ],
+        "tree": tree_sha
+    }
 
-commit_response = requests.post("{}/git/commits".format(base_repo_url), json=content, auth=('token', apiKey))
+    commit_response = requests.post("{}/git/commits".format(base_repo_url), json=content, auth=('token', apiKey))
 
-new_commit_sha = commit_response.json()['sha']
+    new_commit_sha = commit_response.json()['sha']
 
-print("New commit SHA: {}".format(new_commit_sha))
+    #print("New commit SHA: {}".format(new_commit_sha))
 
 
 
-# Update the reference of your branch to point to the new commit SHA
-# POST /repos/:owner/:repo/git/refs/heads/master
-content = {
-     "ref": "refs/heads/main",
-     "sha": new_commit_sha
- }
+    # Update the reference of your branch to point to the new commit SHA
+    # POST /repos/:owner/:repo/git/refs/heads/master
+    content = {
+        "ref": "refs/heads/main",
+        "sha": new_commit_sha
+    }
 
-response = requests.post("{}/git/refs/heads/main".format(base_repo_url), json=content, auth=('token', apiKey))
+    response = requests.post("{}/git/refs/heads/main".format(base_repo_url), json=content, auth=('token', apiKey))
+
+    return response
 
 
-print("Final update: {}".format(response))
+if __name__ == "__main__":
+
+    # import GitHub api key form the config file
+    apiKey = config["myKey"]
+
+    # repository details
+    owner = "przemekbil"
+    repository = "private_rep"
+    original_name = "Andrew"
+    new_name = "Przemek"
+
+    base_repo_url =  "https://api.github.com/repos/{}/{}".format(owner, repository)    
+
+    # get all the files form the repository
+    original_files = getFilesContent(base_repo_url)
+
+    # Change name in all files
+    ammended_files = swapNameInFiles(original_files, "Andrew", "Przemek")
+
+    # upload the changes and commit for each file
+    for file in ammended_files:
+        result = uploadchangesAndCommit(file, original_name, new_name)
+        print(" File {}: {}".format(file["name"], result))
+
 
 #commit_url = base_repo_url + "/git/commits"
 
