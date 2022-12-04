@@ -21,10 +21,17 @@ content = response.json()
 
 # print filenames in the repository
 for repo_element in content:
-    print(repo_element["name"])
+    file_url = repo_element["download_url"]
+
+
+    print("\nFile name: {} \n".format(repo_element["name"]))
+    # get the content of each file
+    response = requests.get(file_url, auth=('token', apiKey))
+
+    print(response.text)
 
 # write to file
-#with open("github.json", "w") as outfile:
-#    json.dump(content, outfile, indent=4)
+with open("github.json", "w") as outfile:
+    json.dump(content, outfile, indent=4)
 
 #print(response.json())

@@ -7,7 +7,7 @@
         "url": "https://api.github.com/repos/przemekbil/private_rep/contents/.gitignore?ref=main",
         "html_url": "https://github.com/przemekbil/private_rep/blob/main/.gitignore",
         "git_url": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/b6e47617de110dea7ca47e087ff1347cc2646eda",
-        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/.gitignore?token=ASRHSKKJNJSAEKAYEVUOEUTDRTVZI",
+        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/.gitignore?token=ASRHSKPXSPLBAU3V6DFYNIDDRTXE2",
         "type": "file",
         "_links": {
             "self": "https://api.github.com/repos/przemekbil/private_rep/contents/.gitignore?ref=main",
@@ -23,7 +23,7 @@
         "url": "https://api.github.com/repos/przemekbil/private_rep/contents/README.md?ref=main",
         "html_url": "https://github.com/przemekbil/private_rep/blob/main/README.md",
         "git_url": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/0597185db5c55818c3b9057d21fb2415ce503497",
-        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/README.md?token=ASRHSKJM5VCZE5U4Z6PRPH3DRTVZI",
+        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/README.md?token=ASRHSKMIPFTNEAQL6RSRTSLDRTXE2",
         "type": "file",
         "_links": {
             "self": "https://api.github.com/repos/przemekbil/private_rep/contents/README.md?ref=main",
@@ -39,7 +39,7 @@
         "url": "https://api.github.com/repos/przemekbil/private_rep/contents/code.py?ref=main",
         "html_url": "https://github.com/przemekbil/private_rep/blob/main/code.py",
         "git_url": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/63365ca6d727403666b0726673435e1ce23139d3",
-        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/code.py?token=ASRHSKN3LBP4LLA5TXYICXLDRTVZI",
+        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/code.py?token=ASRHSKNAMIVVJBTGNN4AN3LDRTXE2",
         "type": "file",
         "_links": {
             "self": "https://api.github.com/repos/przemekbil/private_rep/contents/code.py?ref=main",
