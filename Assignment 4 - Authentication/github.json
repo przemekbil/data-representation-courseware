@@ -1,0 +1,50 @@
+[
+    {
+        "name": ".gitignore",
+        "path": ".gitignore",
+        "sha": "b6e47617de110dea7ca47e087ff1347cc2646eda",
+        "size": 1799,
+        "url": "https://api.github.com/repos/przemekbil/private_rep/contents/.gitignore?ref=main",
+        "html_url": "https://github.com/przemekbil/private_rep/blob/main/.gitignore",
+        "git_url": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/b6e47617de110dea7ca47e087ff1347cc2646eda",
+        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/.gitignore?token=ASRHSKKJNJSAEKAYEVUOEUTDRTVZI",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/przemekbil/private_rep/contents/.gitignore?ref=main",
+            "git": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/b6e47617de110dea7ca47e087ff1347cc2646eda",
+            "html": "https://github.com/przemekbil/private_rep/blob/main/.gitignore"
+        }
+    },
+    {
+        "name": "README.md",
+        "path": "README.md",
+        "sha": "0597185db5c55818c3b9057d21fb2415ce503497",
+        "size": 116,
+        "url": "https://api.github.com/repos/przemekbil/private_rep/contents/README.md?ref=main",
+        "html_url": "https://github.com/przemekbil/private_rep/blob/main/README.md",
+        "git_url": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/0597185db5c55818c3b9057d21fb2415ce503497",
+        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/README.md?token=ASRHSKJM5VCZE5U4Z6PRPH3DRTVZI",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/przemekbil/private_rep/contents/README.md?ref=main",
+            "git": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/0597185db5c55818c3b9057d21fb2415ce503497",
+            "html": "https://github.com/przemekbil/private_rep/blob/main/README.md"
+        }
+    },
+    {
+        "name": "code.py",
+        "path": "code.py",
+        "sha": "63365ca6d727403666b0726673435e1ce23139d3",
+        "size": 49,
+        "url": "https://api.github.com/repos/przemekbil/private_rep/contents/code.py?ref=main",
+        "html_url": "https://github.com/przemekbil/private_rep/blob/main/code.py",
+        "git_url": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/63365ca6d727403666b0726673435e1ce23139d3",
+        "download_url": "https://raw.githubusercontent.com/przemekbil/private_rep/main/code.py?token=ASRHSKN3LBP4LLA5TXYICXLDRTVZI",
+        "type": "file",
+        "_links": {
+            "self": "https://api.github.com/repos/przemekbil/private_rep/contents/code.py?ref=main",
+            "git": "https://api.github.com/repos/przemekbil/private_rep/git/blobs/63365ca6d727403666b0726673435e1ce23139d3",
+            "html": "https://github.com/przemekbil/private_rep/blob/main/code.py"
+        }
+    }
+]
